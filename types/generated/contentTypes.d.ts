@@ -535,37 +535,6 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiClientClient extends Struct.CollectionTypeSchema {
-  collectionName: 'clients';
-  info: {
-    displayName: 'Client';
-    pluralName: 'clients';
-    singularName: 'client';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    comments: Schema.Attribute.Relation<'oneToMany', 'api::commet.commet'>;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    email: Schema.Attribute.String;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::client.client'
-    > &
-      Schema.Attribute.Private;
-    password: Schema.Attribute.String;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    username: Schema.Attribute.String;
-  };
-}
-
 export interface ApiCommetCommet extends Struct.CollectionTypeSchema {
   collectionName: 'commets';
   info: {
@@ -578,7 +547,6 @@ export interface ApiCommetCommet extends Struct.CollectionTypeSchema {
   };
   attributes: {
     article_id: Schema.Attribute.Relation<'manyToOne', 'api::article.article'>;
-    client_id: Schema.Attribute.Relation<'manyToOne', 'api::client.client'>;
     content: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1109,7 +1077,6 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::article.article': ApiArticleArticle;
       'api::category.category': ApiCategoryCategory;
-      'api::client.client': ApiClientClient;
       'api::commet.commet': ApiCommetCommet;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
