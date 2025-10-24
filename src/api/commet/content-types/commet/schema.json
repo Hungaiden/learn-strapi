@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "commets",
+  "info": {
+    "singularName": "commet",
+    "pluralName": "commets",
+    "displayName": "Comment"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "content": {
+      "type": "string"
+    },
+    "article_id": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::article.article",
+      "inversedBy": "comments"
+    },
+    "client_id": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::client.client",
+      "inversedBy": "comments"
+    }
+  }
+}
